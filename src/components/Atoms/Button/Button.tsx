@@ -1,18 +1,19 @@
-import React from "react";
-import styles from "./Button.module.scss";
+import style from "./Button.module.scss";
 
 interface ButtonProps {
   label: string;
-  onClick?: () => any;
+  onClick?: () => void;
+  disabled?: boolean;
 }
 
-function Button(props: ButtonProps) {
-  const { label, onClick } = props;
+const Button = (props: ButtonProps) => {
+  const { label, onClick, disabled } = props;
+
   return (
-    <button className={styles.main} onClick={onClick}>
+    <button disabled={disabled} className={style.main} onClick={onClick}>
       {label}
     </button>
   );
-}
+};
 
 export default Button;

@@ -9,12 +9,15 @@
       color: white;
       cursor: pointer;
       height: 30px;
-}
 
-.main:hover{
-  background-color: var(--neutral);
-}
-.main:active {
-  box-shadow: rgba(0, 0, 0, 2) 0px 18px 36px -30px inset;
-  outline: none;
+      &:hover{
+        background-color: var(--neutral);
+    }
+      &:active{
+        box-shadow: rgba(0, 0, 0, 2) 0px 18px 36px -30px inset;
+        outline: none;
+    }    
+      &:disabled {
+        opacity: 0.5;
+    }
 }

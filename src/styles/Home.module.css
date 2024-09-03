@@ -1,7 +1,12 @@
 .main {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
   min-height: 100vh;
+
+  .content {
+    padding: 20px 0;
+
+    .container {
+      display: flex;
+      gap: 20px;
+    }
+  }
 }
