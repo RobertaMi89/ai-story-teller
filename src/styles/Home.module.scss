@@ -5,9 +5,14 @@
   background-size: cover;
   background-position:top;
   color: var(--darkBlue);
+  display: flex;
+  justify-content: center;
+  padding-left: 300px;
+  padding-top: 100px;
  
   .content {
    padding: 20px 0;
+   width: 100%;
  
    .container {
     margin-left: 20px;
@@ -21,11 +26,23 @@
      background-image: url("../assets/paper.jpg");
      background-size: cover;
      background-repeat: no-repeat;
-     margin-top: rem(20px);
-     padding: rem(100px);
+     margin-top: 20px;
+     padding: 100px;
      box-shadow: none;
      line-height: 2;
+     font-size: 18px;
  
+
+     @media (max-width: 768px) {
+      padding: 50px; 
+      margin-top: 15px; 
+    }
+
+    @media (max-width: 480px) {
+      padding: 20px;
+      margin-top: 10px;
+      background-position: center; 
+    }
    }
   }
  }

@@ -5,7 +5,7 @@ import WindowBox from "@/components/Organism/WindowBox/WindowBox";
 import InputBox from "@/components/Atoms/InputBox/InputBox";
 import SelectBox from "@/components/Molecules/SelectBox/SelectBox";
 import { useState } from "react";
-import { listaGeneri } from "@/constants/common";
+import { listaGeneri, fiabaRuoli } from "@/constants/common";
 import Button from "@/components/Atoms/Button/Button";
 import {
   GenerateContentCandidate,
@@ -15,7 +15,9 @@ import SwitchBox from "@/components/Molecules/SwitchBox/SwitchBox";
 
 export default function Home() {
   const [protagonista, setProtagonista] = useState("");
+  const [protagonistaRuolo, setProtagonistaRuolo] = useState("");
   const [antagonista, setAntagonista] = useState("");
+  const [antagonistaRuolo, setAntagonistaRuolo] = useState("");
   const [genere, setGenere] = useState("");
   const [pegi18, setPegi18] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -26,12 +28,14 @@ export default function Home() {
 
     const prompt = `genera un racconto ${genere} per ${
       pegi18 ? "adulti" : "bambini"
-    }, con il protagonista chiamato ${protagonista} e l'antagonista chiamato ${antagonista}.`;
+    }, con il protagonista ${protagonistaRuolo} chiamato ${protagonista} e l'antagonista ${antagonistaRuolo} chiamato ${antagonista}.`;
 
     if (process.env.NEXT_PUBLIC_GEMINI_KEY) {
       if (
         protagonista.trim().length > 0 &&
         antagonista.trim().length > 0 &&
+        protagonistaRuolo.trim().length > 0 &&
+        antagonistaRuolo.trim().length > 0 &&
         genere.trim().length > 0
       ) {
         const genAI = new GoogleGenerativeAI(
@@ -40,6 +44,7 @@ export default function Home() {
         const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
         const result = await model.generateContent(prompt);
+        console.log("API Response:", result);
 
         const output = (
           result.response.candidates as GenerateContentCandidate[]
@@ -71,10 +76,20 @@ export default function Home() {
                 value={protagonista}
                 setValue={setProtagonista}
               />
+              <SelectBox
+                label="Ruolo Protagonista:"
+                list={fiabaRuoli}
+                setAction={setProtagonistaRuolo}
+              />
               <InputBox
                 label="Nome Antagonista:"
                 value={antagonista}
                 setValue={setAntagonista}
+              />
+              <SelectBox
+                label="Ruolo Antagonista:"
+                list={fiabaRuoli}
+                setAction={setAntagonistaRuolo}
               />
               <SelectBox
                 label="Genere:"
