@@ -1,13 +1,13 @@
 .main {
     background-color: rgba(240, 248, 255, 0.837);
-    position: fixed; // Mantiene la sidebar fissa mentre si scorre
-    height: calc(100vh - 80px); // Imposta l'altezza come 100% dell'altezza della viewport meno il margine superiore
-    width: 300px; // Larghezza predefinita per schermi grandi
-    top: 80px; // Posiziona la sidebar sotto il header
+    position: fixed; 
+    height: calc(100vh - 80px); 
+    width: 300px;
+    top: 80px;
     left: 0;
     z-index: 2;
     padding: 20px;
-    overflow-y: auto; // Aggiunge uno scroll interno se il contenuto è più lungo dell'altezza della sidebar
+    overflow-y: auto; 
   
     h2 {
       margin-bottom: 10px;
@@ -15,15 +15,15 @@
     }
   
     @media (max-width: 768px) {
-      width: 250px; // Riduce la larghezza su schermi medi (tablet)
-      top: 60px; // Adatta il margine superiore per schermi più piccoli
-      height: calc(100vh - 60px); // Regola l'altezza per schermi medi
+      width: 250px; 
+      top: 60px; 
+      height: calc(100vh - 60px);
     }
   
     @media (max-width: 480px) {
-      width: 100%; // Sidebar a larghezza piena su schermi molto piccoli
+      width: 100%; 
       top: 0;
-      height: 100vh; // La sidebar occupa tutta l'altezza della viewport su schermi piccoli
+      height: 100vh; 
       padding-top: 10px;
     }
   }
