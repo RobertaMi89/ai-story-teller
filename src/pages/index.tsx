@@ -1,11 +1,25 @@
 import Head from "next/head";
 import { Inter } from "next/font/google";
-import styles from "@/styles/Home.module.css";
+import style from "@/styles/Home.module.css";
 import Header from "@/components/Molecules/Header/Header";
+import WindowBox from "@/components/Organism/WindowBox/WindowBox";
+import Button from "@/components/Atoms/Button/Button";
+import InputBox from "@/components/Atoms/InputBox/InputBox";
+import SelectBox from "@/components/Molecules/SelectBox/SelectBox";
+import { listaGeneri } from "@/constants/common";
+import { useState } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  const [protagonista, setProtagonista] = useState("");
+  const [antagonista, setAntagonista] = useState("");
+  const [genere, setGenere] = useState("");
+
+  const handleGenerate = () => {
+    console.log({ protagonista, antagonista, genere });
+  };
+
   return (
     <>
       <Head>
@@ -14,8 +28,40 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
-        <Header title="AI Story Teller"></Header>
+      <main className={style.main}>
+        <Header title="AI Story Teller" />
+        <div className={style.content}>
+          <WindowBox title="Story Params">
+            <div className={style.container}>
+              <InputBox
+                label="Nome Protagonista:"
+                value={protagonista}
+                setValue={setProtagonista}
+              />
+              <InputBox
+                label="Nome Antagonista:"
+                value={antagonista}
+                setValue={setAntagonista}
+              />
+            </div>
+            <div className={style.container}>
+              <SelectBox
+                label="Genere:"
+                list={listaGeneri}
+                setAction={setGenere}
+              />
+            </div>
+            <Button
+              label="Genera"
+              onClick={handleGenerate}
+              disabled={
+                protagonista.trim().length <= 0 ||
+                antagonista.trim().length <= 0 ||
+                genere.trim().length <= 0
+              }
+            />
+          </WindowBox>
+        </div>
       </main>
     </>
   );
