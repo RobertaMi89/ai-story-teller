@@ -1,0 +1,31 @@
+.main {
+  min-height: 100vh;
+  background-image: url("../assets/bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position:top;
+  color: var(--darkBlue);
+ 
+  .content {
+   padding: 20px 0;
+ 
+   .container {
+    margin-left: 20px;
+     gap: 20px;
+ 
+   }
+ 
+   .result {
+
+     @include window-style(100%);
+     background-image: url("../assets/paper.jpg");
+     background-size: cover;
+     background-repeat: no-repeat;
+     margin-top: rem(20px);
+     padding: rem(100px);
+     box-shadow: none;
+     line-height: 2;
+ 
+   }
+  }
+ }
