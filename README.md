@@ -12,7 +12,7 @@ AI Story Teller è un'applicazione web innovativa progettata per generare raccon
 
 ## Funzionalità
 
-Generazione di Storie Personalizzate: Gli utenti possono creare racconti specificando nomi e ruoli dei personaggi, il genere della storia (ad esempio, fantasy, horror) e se la storia è destinata a bambini o adulti.
+**Generazione di Storie Personalizzate**: Gli utenti possono creare racconti specificando nomi e ruoli dei personaggi, il genere della storia (ad esempio, fantasy, horror) e se la storia è destinata a bambini o adulti.
 Sintesi Vocale: Dopo aver generato una storia, gli utenti possono ascoltarla utilizzando la sintesi vocale del browser. Sono disponibili voci predefinite come "Cosimo" e "Elsa", con opzioni per regolare il timbro e la velocità della voce.
 Interfaccia Utente Intuitiva: L'app è divisa in due sezioni principali:
 Sezione Sinistra: Permette l'inserimento dei parametri della storia.
@@ -20,6 +20,6 @@ Sidebar Destra: Contiene le opzioni per la sintesi vocale, inclusa la selezione 
 
 ## Come Usare l'Applicazione
 
-Inserisci i Dati: Nella sezione sinistra, inserisci i nomi e i ruoli dei personaggi, seleziona il genere della storia e indica se la storia è per adulti o bambini.
+**Inserisci i Dati**: Nella sezione sinistra, inserisci i nomi e i ruoli dei personaggi, seleziona il genere della storia e indica se la storia è per adulti o bambini.
 Genera la Storia: Clicca sul pulsante "Genera" per creare la storia basata sui parametri inseriti.
 Ascolta la Storia: Nella sidebar destra, utilizza i controlli per regolare il timbro e la velocità della voce e ascolta la storia generata con le voci disponibili.
