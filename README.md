@@ -1,40 +1,20 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+AI Story Teller
+AI Story Teller è un'applicazione web innovativa progettata per generare racconti personalizzati utilizzando l'intelligenza artificiale e per leggere tali racconti ad alta voce. Con un'interfaccia utente intuitiva, gli utenti possono creare storie uniche e ascoltarle tramite sintesi vocale, scegliendo tra diverse voci e opzioni di personalizzazione.
 
-## Getting Started
+Tecnologie Utilizzate
+Next.js: Framework React per la generazione di pagine lato server e la costruzione di un'applicazione web performante e SEO-friendly.
+React: Libreria JavaScript per costruire interfacce utente interattive e componenti riutilizzabili.
+Sass: Preprocessore CSS utilizzato per gestire gli stili dell'applicazione e migliorare la modularità del CSS.
+Google Generative AI: API utilizzata per generare contenuti narrativi basati su prompt forniti dagli utenti.
+Speech Synthesis API: API del browser per la sintesi vocale, utilizzata per leggere ad alta voce i racconti generati.
+Funzionalità
+Generazione di Storie Personalizzate: Gli utenti possono creare racconti specificando nomi e ruoli dei personaggi, il genere della storia (ad esempio, fantasy, horror) e se la storia è destinata a bambini o adulti.
+Sintesi Vocale: Dopo aver generato una storia, gli utenti possono ascoltarla utilizzando la sintesi vocale del browser. Sono disponibili voci predefinite come "Cosimo" e "Elsa", con opzioni per regolare il timbro e la velocità della voce.
+Interfaccia Utente Intuitiva: L'app è divisa in due sezioni principali:
+Sezione Sinistra: Permette l'inserimento dei parametri della storia.
+Sidebar Destra: Contiene le opzioni per la sintesi vocale, inclusa la selezione della voce e i controlli per la personalizzazione della voce.
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Come Usare l'Applicazione
+Inserisci i Dati: Nella sezione sinistra, inserisci i nomi e i ruoli dei personaggi, seleziona il genere della storia e indica se la storia è per adulti o bambini.
+Genera la Storia: Clicca sul pulsante "Genera" per creare la storia basata sui parametri inseriti.
+Ascolta la Storia: Nella sidebar destra, utilizza i controlli per regolare il timbro e la velocità della voce e ascolta la storia generata con le voci disponibili.
