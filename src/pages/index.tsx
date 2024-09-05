@@ -2,16 +2,15 @@ import Head from "next/head";
 import style from "@/styles/Home.module.scss";
 import Header from "@/components/Molecules/Header/Header";
 import WindowBox from "@/components/Organism/WindowBox/WindowBox";
+import RightSidebar from "@/components/Organism/WindowBox/RightSideBar";
 import InputBox from "@/components/Atoms/InputBox/InputBox";
 import SelectBox from "@/components/Molecules/SelectBox/SelectBox";
 import { useState } from "react";
 import { listaGeneri, fiabaRuoli } from "@/constants/common";
 import Button from "@/components/Atoms/Button/Button";
-import {
-  GenerateContentCandidate,
-  GoogleGenerativeAI,
-} from "@google/generative-ai";
 import SwitchBox from "@/components/Molecules/SwitchBox/SwitchBox";
+import Toast from "@/components/Atoms/Toast/Toast";
+import VoiceController from "@/components/Organism/WindowBox/VoiceController";
 
 export default function Home() {
   const [protagonista, setProtagonista] = useState("");
@@ -22,10 +21,11 @@ export default function Home() {
   const [pegi18, setPegi18] = useState(false);
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState("");
+  const [error, setError] = useState(false);
 
   const handleGenerate = async () => {
     setLoading(true);
-
+    setError(false);
     const prompt = `genera un racconto ${genere} per ${
       pegi18 ? "adulti" : "bambini"
     }, con il protagonista ${protagonistaRuolo} chiamato ${protagonista} e l'antagonista ${antagonistaRuolo} chiamato ${antagonista}.`;
@@ -38,24 +38,24 @@ export default function Home() {
         antagonistaRuolo.trim().length > 0 &&
         genere.trim().length > 0
       ) {
-        const genAI = new GoogleGenerativeAI(
-          process.env.NEXT_PUBLIC_GEMINI_KEY
-        );
-        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-
-        const result = await model.generateContent(prompt);
-        console.log("API Response:", result);
-
-        const output = (
-          result.response.candidates as GenerateContentCandidate[]
-        )[0].content.parts[0].text;
-
-        if (output) {
-          setResponse(output);
+        try {
+          const response = await fetch("/api/generate", {
+            headers: { "Content-Type": "application/json" },
+            method: "POST",
+            body: JSON.stringify({ prompt }),
+          });
+          const data = await response.json();
+          if (!data.ok) {
+            throw new Error("errore");
+          }
+          setResponse(data.message);
+        } catch (e) {
+          console.error("il nostro errore:", e);
+          setError(true);
         }
       }
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   return (
@@ -69,6 +69,13 @@ export default function Home() {
       <main className={style.main}>
         <Header title="AI Story Teller" />
         <div className={style.content}>
+          {error && (
+            <Toast
+              setAction={setError}
+              title="Errore"
+              message="Errore nella creazione del racconto"
+            />
+          )}
           <WindowBox title="Story Params">
             <div className={style.container}>
               <InputBox
@@ -114,11 +121,16 @@ export default function Home() {
             </div>
           </WindowBox>
 
-          {loading ? (
+          <RightSidebar title="Voice Options">
+            <VoiceController text={response} />
+          </RightSidebar>
+
+          {loading && (
             <div className={style.loading}>
               <p>loading...</p>
             </div>
-          ) : (
+          )}
+          {!loading && response && (
             <div className={style.result}>{response}</div>
           )}
         </div>

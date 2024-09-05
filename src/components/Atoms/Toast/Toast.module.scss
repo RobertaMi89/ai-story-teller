@@ -1,0 +1,28 @@
+
+.danger {
+    width: 220px;
+    height: 60px;
+    margin: 20px;
+    padding: 10px;
+    position: absolute;
+    right: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 5px;
+    align-items: center;
+    text-align: left;
+    background-color: rgb(221, 40, 40);
+    cursor:pointer;
+    box-shadow:  9px 9px 18px #262c3e,
+    -9px -9px 18px #30384e;
+    color:white;
+    z-index: 10;
+}
+
+.danger:hover
+{
+  background-color: rgba(255, 10, 1, 0.33);
+  transition:0.5s;
+}
+
