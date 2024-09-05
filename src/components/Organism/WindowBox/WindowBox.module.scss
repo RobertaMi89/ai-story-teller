@@ -15,9 +15,11 @@
     }
 
     @media (max-width: 768px) {
-      width: 250px; 
+      width: 100%; 
       top: 60px; 
-      height: calc(100vh - 60px);
+      height: calc(40vh - 60px);
+      display: flex;
+     
     }
   
     @media (max-width: 480px) {

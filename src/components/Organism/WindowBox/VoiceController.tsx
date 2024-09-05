@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Button from "@/components/Atoms/Button/Button";
-import style from "@/components/Organism/VoiceController.module.scss";
+import style from "@/components/Organism/WindowBox/RightSideBar.module.scss";
 
 interface VoiceControllerProps {
   text: string;
