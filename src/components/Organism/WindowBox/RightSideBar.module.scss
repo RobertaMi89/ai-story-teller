@@ -1,5 +1,5 @@
 .rightSidebar {
-    background-color: rgba(240, 248, 255, 0.837);
+      background-color: rgba(240, 248, 255, 0.837);
     position: fixed;
     height: calc(100vh - 80px);
     width: 300px;
@@ -13,7 +13,7 @@
       margin-bottom: 10px;
       margin-left: 20px;
     }
-  
+   
     @media (max-width: 768px) {
       width: 250px;
       top: 60px;

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Button from "@/components/Atoms/Button/Button";
+import style from "@/components/Organism/VoiceController.module.scss";
 
 interface VoiceControllerProps {
   text: string;
@@ -38,30 +39,28 @@ const VoiceController = ({ text }: VoiceControllerProps) => {
   useEffect(() => {
     const loadVoices = () => {
       const availableVoices = speechSynthesis.getVoices();
-      // Filtra solo le voci che si chiamano "Cosimo" ed "Elsa"
       const filteredVoices = availableVoices.filter(
         (v) => v.name.includes("Cosimo") || v.name.includes("Elsa")
       );
       setVoices(filteredVoices);
-      // Imposta la prima voce disponibile (ad esempio Cosimo o Elsa) come default
+
       if (filteredVoices.length > 0) {
         setVoice(filteredVoices[0]);
       }
     };
 
     loadVoices();
-    // Alcuni browser potrebbero non caricare le voci immediatamente
     if (speechSynthesis.onvoiceschanged !== undefined) {
       speechSynthesis.onvoiceschanged = loadVoices;
     }
   }, []);
 
   return (
-    <div>
-      <h3>Voice Controller</h3>
+    <div className={style.main}>
       <label>
         Timbro (Pitch):
         <input
+          className={style.input}
           type="range"
           min="0.5"
           max="2"
