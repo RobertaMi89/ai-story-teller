@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import style from "./RightSidebar.module.scss";
+import style from "@/components/Organism/WindowBox/RightSideBar.module.scss";
 
 interface RightSidebarProps {
   title?: string;
