@@ -13,6 +13,12 @@
     margin-top: 10px;
     margin-bottom: 10px;
 
+    @media (max-width: 768px) {
+        width:52px;
+        height:20px;
+        margin-top: 0;
+      }
+
     .mask {
         position: absolute;
         width: 0%;
@@ -36,6 +42,11 @@
         background-color: var(--primary);
         transition: all 0.2s ease;
         z-index: 10;
+        @media (max-width: 768px) {
+            width: 20px;
+            height: 20px;
+           
+          }
 
         &.active {
             left: 30px;

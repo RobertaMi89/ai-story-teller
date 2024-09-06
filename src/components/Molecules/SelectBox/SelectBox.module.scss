@@ -3,6 +3,8 @@
     
     select{
         border-radius: 10px;
-        
+        @media (max-width:768px){
+            margin-top: 5px;
+        }
     }
 }

@@ -22,30 +22,20 @@
 
     @media (max-width: 768px) {
     display: flex;
+    flex-wrap: wrap;
     width: 100%;
+    align-items: baseline;
+    margin-top:0 ;
+    gap: 12px;
+    border-bottom: 1px solid var(--darkBlue);
     }
   }
   
   .sidebar {
     width: 25%;
     margin-left: 2%;
+    
   }
-  .analysis {
-    padding: 1rem;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 0.5rem;
-  }
-  
-  .title {
-    font-size: 1.25rem;
-    font-weight: bold;
-  }
-  
-  .question {
-    margin-bottom: 0.5rem;
-  }
-  
 
   .result {
     @include window-style(100%);
@@ -60,8 +50,11 @@
 
     @media (max-width: 768px) {
       width: 100vw;
-      padding: 10px;
-      margin-top: 15rem;
+      padding: 20px;
+      position: relative;
+      top: 45%;
+      right: 300px;
+      
     }
 
     @media (max-width: 480px) {
