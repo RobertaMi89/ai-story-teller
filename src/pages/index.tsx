@@ -12,16 +12,22 @@ import SwitchBox from "@/components/Molecules/SwitchBox/SwitchBox";
 import Toast from "@/components/Atoms/Toast/Toast";
 import VoiceController from "@/components/Organism/WindowBox/VoiceController";
 
-export default function Home() {
-  const [protagonista, setProtagonista] = useState("");
-  const [protagonistaRuolo, setProtagonistaRuolo] = useState("");
-  const [antagonista, setAntagonista] = useState("");
-  const [antagonistaRuolo, setAntagonistaRuolo] = useState("");
-  const [genere, setGenere] = useState("");
-  const [pegi18, setPegi18] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [response, setResponse] = useState("");
-  const [error, setError] = useState(false);
+interface Analisi {
+  question: string;
+  answer: string;
+}
+
+const Home = () => {
+  const [protagonista, setProtagonista] = useState<string>("");
+  const [protagonistaRuolo, setProtagonistaRuolo] = useState<string>("");
+  const [antagonista, setAntagonista] = useState<string>("");
+  const [antagonistaRuolo, setAntagonistaRuolo] = useState<string>("");
+  const [genere, setGenere] = useState<string>("");
+  const [pegi18, setPegi18] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [response, setResponse] = useState<string>("");
+  const [error, setError] = useState<boolean>(false);
+  const [analisi, setAnalisi] = useState<Analisi[] | null>(null);
 
   const handleGenerate = async () => {
     setLoading(true);
@@ -49,10 +55,37 @@ export default function Home() {
             throw new Error("errore");
           }
           setResponse(data.message);
+          setAnalisi(null); // Resetta l'analisi quando si genera un nuovo racconto
         } catch (e) {
           console.error("il nostro errore:", e);
           setError(true);
         }
+        setLoading(false);
+      }
+    }
+  };
+
+  const handleAnalyze = async () => {
+    if (response.trim().length > 0) {
+      setLoading(true);
+      setError(false);
+
+      const analysisPrompt = `Analizza il seguente testo e fornisci cinque domande e risposte: ${response}`;
+
+      try {
+        const analysisResponse = await fetch("/api/analyze", {
+          headers: { "Content-Type": "application/json" },
+          method: "POST",
+          body: JSON.stringify({ prompt: analysisPrompt }),
+        });
+        const analysisData = await analysisResponse.json();
+        if (!analysisData.ok) {
+          throw new Error("errore analisi");
+        }
+        setAnalisi(analysisData.message);
+      } catch (e) {
+        console.error("Errore nell'analisi:", e);
+        setError(true);
       }
       setLoading(false);
     }
@@ -118,6 +151,13 @@ export default function Home() {
                   loading
                 }
               />
+              {response && (
+                <Button
+                  label="Analizza"
+                  onClick={handleAnalyze}
+                  disabled={loading}
+                />
+              )}
             </div>
           </WindowBox>
 
@@ -131,10 +171,27 @@ export default function Home() {
             </div>
           )}
           {!loading && response && (
-            <div className={style.result}>{response}</div>
+            <div className={style.result}>
+              <h2 className={style.title}>Racconto Generato</h2>
+              <p>{response}</p>
+            </div>
+          )}
+          {analisi && (
+            <div className={style.analysis}>
+              <h2 className={style.title}>Analisi del Racconto</h2>
+              <ul>
+                {analisi.map((item, index) => (
+                  <li key={index} className={style.question}>
+                    <strong>{item.question}</strong> {item.answer}
+                  </li>
+                ))}
+              </ul>
+            </div>
           )}
         </div>
       </main>
     </>
   );
-}
+};
+
+export default Home;

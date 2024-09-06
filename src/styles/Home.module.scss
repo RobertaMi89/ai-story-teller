@@ -30,6 +30,22 @@
     width: 25%;
     margin-left: 2%;
   }
+  .analysis {
+    padding: 1rem;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+  }
+  
+  .title {
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+  
+  .question {
+    margin-bottom: 0.5rem;
+  }
+  
 
   .result {
     @include window-style(100%);
