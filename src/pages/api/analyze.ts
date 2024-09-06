@@ -27,7 +27,7 @@ export default async function handler(
         const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
         const result = await model.generateContent(prompt);
-        console.log("Analysis Result:", result); // Log della risposta per debug
+        console.log("Analysis Result:", result);
 
         const output = (
           result.response.candidates as GenerateContentCandidate[]
@@ -42,12 +42,10 @@ export default async function handler(
             .json({ ok: false, message: "Nessuna analisi generata" });
         }
       } else {
-        return res
-          .status(400)
-          .json({
-            ok: false,
-            message: "Errore nella generazione (key missing)",
-          });
+        return res.status(400).json({
+          ok: false,
+          message: "Errore nella generazione (key missing)",
+        });
       }
     } catch (e) {
       return res
@@ -59,9 +57,7 @@ export default async function handler(
   }
 }
 
-// Implementa questa funzione per gestire l'analisi del testo
 function parseAnalysis(text: string): any {
-  // Modifica questa logica in base al formato dell'analisi
   return text.split("\n").map((line, index) => ({
     question: `Domanda ${index + 1}`,
     answer: line,
