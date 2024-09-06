@@ -23,13 +23,13 @@
     }
 
     label,select,input,button{
-      @media(max-width:768px){
+      @media(max-width:1128px){
         margin-left: 20px;
         margin-top: 10px;
       }
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 1128px) {
       width: 100%;
       height: calc(50vh - 60px);
       display: flex;
